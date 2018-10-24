@@ -15,4 +15,4 @@ app = Flask(__name__, static_folder='public')
 # migrate = Migrate(app, db)
 # bcrypt = Bcrypt(app)
 #
-# from config import routes
+from config import routes
