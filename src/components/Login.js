@@ -22,7 +22,6 @@ class Login extends React.Component {
       .post('/api/login', this.state.credentials)
       .then( res => {
         Auth.setToken(res.data.token);
-
         this.props.history.push('/');
       })
       .catch(() => this.setState({error: 'Invalid credentials'}));

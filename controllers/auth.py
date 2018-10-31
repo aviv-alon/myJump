@@ -29,14 +29,18 @@ def login():
     data, error = user_schema.load(req_data)
 
     user = User.query.filter_by(email=data.get('email')).first()
-
+    print(user.default_team_id)
     if not user or not user.validate_password(data.get('password', '')):
         return jsonify({'message': 'Unauthorized'}), 401
 
     payload = {
         'exp': datetime.utcnow() + timedelta(days=1),
         'iat': datetime.utcnow(),
-        'sub': user.id
+        'sub': user.id,
+        'permission': user.permission,
+        'default_wave_id': user.default_wave_id,
+        'default_team_id': user.default_team_id,
+
     }
 
     token = jwt.encode(
@@ -47,5 +51,9 @@ def login():
 
     return jsonify({
         'message': 'Welcome back {}!'.format(user.username),
+        'permission': user.permission,
+        'default_team_id': user.default_team_id,
+        'default_wave_id': user.default_wave_id,
+
         'token': token
     })

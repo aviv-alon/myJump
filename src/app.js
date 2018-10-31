@@ -12,6 +12,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import UserShow from './components/users/UserShow';
 import UserEdit from './components/users/UserEdit';
+import TeamIndex from './components/team/TeamIndex';
 import Main from './components/Main';
 
 
@@ -28,6 +29,11 @@ class App extends React.Component {
             <Route path="/login" component={Login} />
             <SecureRoute path="/profile/:id/edit" component={UserEdit} />
             <SecureRoute path="/profile" component={UserShow} />
+
+            <SecureRoute path="/team/:id" component={TeamIndex} />
+
+
+
             <Route path="/" component={Main} />
           </Switch>
           <Switch>

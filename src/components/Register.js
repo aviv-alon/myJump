@@ -54,7 +54,7 @@ class Register extends React.Component {
             <div className="field">
               <label className="label">Password Confirmation</label>
               <div className="control">
-                <input className={`input ${this.state.error ? 'is-danger' : ''} `} name="passwordConfirmation" type="password" placeholder="Password" onChange={this.handleChange} />
+                <input className={`input ${this.state.error ? 'is-danger' : ''} `} name="password_confirmation" type="password" placeholder="Password" onChange={this.handleChange} />
               </div>
             </div>
             {this.state.error && <small className="help is-danger">{this.state.error}</small>}

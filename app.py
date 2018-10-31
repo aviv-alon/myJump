@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 ma = Marshmallow(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, compare_type=True)
 bcrypt = Bcrypt(app)
 
 from config import routes

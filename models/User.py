@@ -21,6 +21,7 @@ class User(BaseMixin, db.Model):
     image = db.Column(db.String(255), nullable=True)
     permission = db.Column(db.Integer, nullable=False, default=2)
     default_wave_id = db.Column(db.Integer, db.ForeignKey('waves.id'), nullable=True) #fk
+    default_team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=True) #fk
     # created_at = db.Column(db.DateTime)
     # updated_at = db.Column(db.DateTime)
 
@@ -71,6 +72,7 @@ class UserSchema(ma.Schema):
     image = fields.Url(required=False)
     permission = fields.Integer(required=False)
     default_wave_id = fields.Integer(required=False)
+    default_team_id = fields.Integer(required=False)
 
 
     @validates_schema
@@ -93,6 +95,7 @@ class UserSchema(ma.Schema):
             'last_name',
             'image',
             'permission',
+            'default_team_id',
             'default_wave_id',
             'created_at',
             'updated_at'

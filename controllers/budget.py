@@ -18,13 +18,21 @@ api = Blueprint('budget', __name__)
 @api.route('/budgets', methods=['GET'])
 @secure_route
 def index():
-    budget = Budget.query.all()
-    return budget_schema.jsonify(budget)
+    req_team_id = request.args.get('teamId')
+    if req_team_id:
+        print('req_team_id = ' + req_team_id)
+        budget = Budget.query.filter(Budget.team_id == req_team_id)
+    else:
+        print('req_team_id = ' + req_team_id)
+        budget = Budget.query.all()
+
+    return budgets_schema.jsonify(budget)
 
 
 @api.route('/budgets/<int:id>', methods=['GET'])
 @secure_route
 def show(id):
+    budget = Budget.query.get(id)
     budget = Budget.query.get(id)
 
     if not budget:
@@ -49,22 +57,6 @@ def create():
 
     return budget_schema.jsonify(budget), 201
 
-    # req_data = request.get_json()
-    # ingredients = req_data['ingredients']
-    # del req_data['ingredients']
-    #
-    # try:
-    #     data = cocktail_schema.load(req_data)
-    # except ValidationError as error:
-    #     return jsonify({'error': error.messages}), 422
-    #
-    # cocktail = Cocktail(data)
-    # cocktail.add_ingredients(ingredients)
-    #
-    # cocktail.save()
-    #
-    # return cocktail_schema.jsonify(cocktail), 201
-
 
 @api.route('/budget/<int:id>', methods=['PUT', 'PATCH'])
 @secure_route
@@ -75,16 +67,11 @@ def update(id):
         return jsonify({'message': 'Not found'}), 404
 
     req_data = request.get_json()
-
-
     data, error = budget_schema.load(req_data)
 
     if error:
         return jsonify({'error': error}), 422
-
-
     budget.update(data)
-
     return budget_schema.jsonify(budget)
 
 
@@ -99,20 +86,3 @@ def delete(id):
 
     budget.delete()
     return '', 204
-
-
-# @api.route('/teams/<int:id>/users', methods=['POST'])
-# @secure_route
-# def create_users(id):
-#     req_data = request.get_json()
-#     req_data['user_id'] = g.current_user.id
-#     req_data['student_id'] = id
-#     data, errors = student_comment_schema.load(req_data)
-#
-#     if errors:
-#         jsonify({'errors': errors}), 422
-#
-#     comment = StudentComment(data)
-#     comment.save()
-#
-#     return student_comment_schema.jsonify(comment)

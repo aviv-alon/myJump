@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 class Main extends React.Component {
@@ -10,10 +10,10 @@ class Main extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('/api/artists')
-      .then(res => this.setState({ artists: res.data }));
-    axios.get('/api/journeys')
-      .then(res => this.setState({ journeys: res.data }));
+    // axios.get('/api/artists')
+    //   .then(res => this.setState({ artists: res.data }));
+    // axios.get('/api/journeys')
+    //   .then(res => this.setState({ journeys: res.data }));
   }
 
 

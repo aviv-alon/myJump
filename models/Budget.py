@@ -22,7 +22,7 @@ class Budget(BaseMixin, db.Model):
     created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     invoice_tax_number = db.Column(db.String(255), nullable=True)
     invoice_image = db.Column(db.String(255), nullable=True)
-    date = db.Column(db.DateTime, nullable=True)
+    date = db.Column(db.Date, nullable=True)
 
 
 class BudgetSchema(ma.Schema):
@@ -38,13 +38,13 @@ class BudgetSchema(ma.Schema):
     created_by = fields.Integer(required=True)
     invoice_tax_number = fields.String(required=False)
     invoice_image = fields.String(required=False)
-    date = fields.TimeDelta(required=False)
+    date = fields.Date(required=False)
 
 
     class Meta:
         model = Budget
         fields = (
-            # 'id',
+            'id',
             'title',
             'description',
             'amount',
