@@ -22,7 +22,8 @@ class Login extends React.Component {
       .post('/api/login', this.state.credentials)
       .then( res => {
         Auth.setToken(res.data.token);
-        this.props.history.push('/');
+        console.log(Auth.getPayload().default_team_id);
+        this.props.history.push(`/team/${Auth.getPayload().default_team_id}`);
       })
       .catch(() => this.setState({error: 'Invalid credentials'}));
   }

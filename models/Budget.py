@@ -35,7 +35,7 @@ class BudgetSchema(ma.Schema):
     description = fields.String(required=False)
     amount = fields.Float(required=True)
     team_id = fields.Integer(required=True)
-    created_by = fields.Integer(required=True)
+    created_by = fields.Integer(required=False)
     invoice_tax_number = fields.String(required=False)
     invoice_image = fields.String(required=False)
     date = fields.Date(required=False)

@@ -10,16 +10,18 @@
     "postinstall": "[ \"$NODE_ENV\" = production ] && yarn build || exit 0"
   },
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "@fortawesome/fontawesome-free": "^5.4.2",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.1",
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
     "bulma": "^0.7.1",
+    "react": "^15.6.1",
+    "react-beautiful-dnd": "^9.0.2",
+    "react-dom": "^15.6.1",
+    "react-filestack": "^0.9.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-filestack": "^0.9.7",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TaskCard = ({title, type}) => {
+const TaskCard = (props) => {
+  console.log(props);
   return (
     <div className="card">
       <div className="card-content">
-        <p> {title} </p>
-        <p> {type} </p>
+        <p> {props.task.content} </p>
       </div>
     </div>
   );

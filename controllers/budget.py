@@ -44,9 +44,11 @@ def show(id):
 @api.route('/budgets', methods=['POST'])
 @secure_route
 def create():
+    print(g.current_user.id)
     req_data = request.get_json()
+    req_data['created_by'] = g.current_user.id
     data, errors = budget_schema.load(req_data)
-    print(data)
+    # print(data)
 
     if errors:
         return jsonify({'errors': errors}), 422
@@ -67,6 +69,7 @@ def update(id):
         return jsonify({'message': 'Not found'}), 404
 
     req_data = request.get_json()
+    req_data['created_by'] = g.current_user.id
     data, error = budget_schema.load(req_data)
 
     if error:

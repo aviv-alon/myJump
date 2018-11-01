@@ -12,8 +12,11 @@ class BudgetIndex extends React.Component {
       teamId: props.teamId,
       budgetLines: null,
       modalState: false,
-      budgetLine: { team_id: props.teamId, created_by: 11 },
-      errors: {}
+      budgetLine: { team_id: props.teamId },
+      errors: {},
+      totalIncome: null,
+      totalExpenses: null
+
     };
     this.actiosModel = {
       new: 0,
@@ -22,16 +25,23 @@ class BudgetIndex extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('auth.getPayload' + Auth.getPayload().sup);
   }
 
   toggleModal(action) {
     this.setState((prev) => {
       const newState = !prev.modalState;
       let state = { modalState: newState, modelAction: action };
-      if (!newState) state = { ...state, budgetLine: { team_id: this.state.teamId, created_by: 11 } };
+      if (!newState) state = { ...state, budgetLine: { team_id: this.state.teamId } };
       return state;
     });
+  }
+
+  componentDidMount() {
+    this.getBudgetLines();
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
   }
 
   handleChange(e) {
@@ -55,7 +65,6 @@ class BudgetIndex extends React.Component {
         const budgetLines = this.state.budgetLines.concat(res.data);
         this.setState({ budgetLines });
         this.toggleModal();
-        // this.setState({ budgetLine: { team_id: this.state.teamId, created_by: 11 } });
       })
       .catch((err) => this.setState({ errors: err.response.data.errors }));
   }
@@ -69,7 +78,6 @@ class BudgetIndex extends React.Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(() => {
-        console.log(this.state.budgetLines);
         const indexBudgetLine = this.state.budgetLines.findIndex((el)=> el.id === this.state.budgetLine.id);
         const budgetLines = [...this.state.budgetLines];
         budgetLines[indexBudgetLine] = this.state.budgetLine;
@@ -90,12 +98,7 @@ class BudgetIndex extends React.Component {
       .then(res => this.setState({ budgetLines: res.data }));
   }
 
-  componentDidMount() {
-    this.getBudgetLines();
-  }
 
-  componentDidUpdate() {
-  }
 
   handleDelete(bl) {
     const token = Auth.getToken();
@@ -114,10 +117,19 @@ class BudgetIndex extends React.Component {
     return (
 
       <div className="container">
-        <div className="level">
+
+        <div className="card">
+          <div className="card-content">
+            <p> Current Balance: {this.state.budgetLines && this.state.budgetLines.reduce((accumulator, bl) => accumulator + bl.amount,0)}  ₪ </p>
+          </div>
           <button className="button" onClick={() =>this.toggleModal(this.actiosModel.new)}>
              + Add Budget Line
           </button>
+        </div>
+
+        <br/> {/* // TODO: delete the br */}
+
+        <div className="card">
           <table className="table">
             <thead>
               <tr>
@@ -130,31 +142,38 @@ class BudgetIndex extends React.Component {
               </tr>
             </thead>
 
+
+
             <tbody>
               {this.state.budgetLines && this.state.budgetLines.map(bl =>
                 <tr key= {bl.id}>
                   <th>{bl.date}</th>
                   <td>{bl.title}</td>
-                  <td>{bl.amount}</td>
+                  <td>{ bl.amount + '₪ '}</td>
                   <td>cals</td>
                   <td>
-                    {Auth.isAuthenticated() && <button className="button" onClick={() => {
+                    {Auth.isAuthenticated() && <a onClick={() => {
                       const budgetLine = { ...this.state.budgetLine,...bl};
                       this.setState({budgetLine});
                       console.log(this.state.budgetLine);
                       this.toggleModal(this.actiosModel.edit);
                     }}>
-                      Edit
-                    </button>}
-                    {Auth.isAuthenticated() && <button onClick={() => this.handleDelete(bl)} className="button is-danger">
-                      Delete
-                    </button>}
+                      <span className="icon">
+                        <i className="far fa-edit"></i>
+                      </span>
+                    </a>}
+                    {Auth.isAuthenticated() && <a onClick={() => this.handleDelete(bl)} >
+                      <span className="icon">
+                        <i className="far fa-trash-alt"></i>
+                      </span>
+                    </a>}
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
+
 
         <BudgetLineForm
           closeModal={this.toggleModal}

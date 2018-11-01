@@ -5,6 +5,7 @@ const BudgetLineForm = ({ closeModal, modalState, tilteModel, handleSubmit, hand
     return null;
   }
 
+
   return(
     <div className="modal is-active">
       <div className="modal-background" onClick={closeModal} />

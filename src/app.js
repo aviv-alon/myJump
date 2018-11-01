@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import 'bulma';
-import './scss/style.scss';
+import '@fortawesome/fontawesome-free/css/all.css';
+import './scss/main.scss';
 
 import Navbar from './components/Navbar';
 import SecureRoute from './components/SecureRoute';
