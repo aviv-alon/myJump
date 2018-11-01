@@ -1,0 +1,50 @@
+
+.team {
+
+  color: _palette(jump-font);
+
+  .team__logo {
+    display: inline-block;
+    margin: 0 20px 70px 20px;
+
+  }
+
+  .team__header-content{
+    display: inline-block;
+  }
+
+  .team__name {
+    h2 {
+      display: inline;
+
+    }
+    a {
+      color: _palette(jump-font);
+    }
+  }
+
+  .team__wave {
+    margin: 10px 15px;
+    font-style: italic;
+  }
+
+  .team__tabMenu.tabs  {
+    a {
+      color: #848C8E;
+    }
+
+    li.is-active a {
+      color: _palette(jump-blue);
+      border-bottom-color: _palette(jump-blue);
+    }
+  }
+
+  .team__members {
+    margin: 5% 0 15% 0;
+    figure{
+      display: inline-block;
+      margin: auto 10px;
+    }
+  }
+
+}

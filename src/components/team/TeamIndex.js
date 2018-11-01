@@ -1,6 +1,6 @@
 import React from 'react';
-import { withRouter, Switch } from 'react-router-dom';
-import SecureRoute from '../SecureRoute';
+import { withRouter } from 'react-router-dom';
+
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import TeamTabMenu from './TeamTabMenu';
@@ -17,11 +17,11 @@ class TeamIndex extends React.Component {
     this.state = {
       team: {},
       teamId: props.match.params.id,
-      url: props.match.url,
-      activeTab: 0
+      currentTab: 'meetings'
     };
 
     this.getTeam = this.getTeam.bind(this);
+    this.setCurrentTab = this.setCurrentTab.bind(this);
   }
 
   componentDidMount() {
@@ -38,39 +38,56 @@ class TeamIndex extends React.Component {
       .then(res => this.setState({ team: res.data }));
   }
 
+  setCurrentTab(currentTab){
+    this.setState({currentTab});
+  }
+
   render() {
     return (
-      <main className="section">
+      <main className="section team">
         <div className="container">
 
-          <div className="container">
-            <div className="level-left">
-              <figure className="image is-128x128">
-                <img src={this.state.team.image} alt={this.state.team.name}/>
-              </figure>
-              <h2 className="title is-1">{this.state.team.name}   </h2>
-              <span className="icon">
-                <img src="/assets/icons/settings_icon.svg"></img>
+          <header>
+
+            {/* Team Logo */}
+            <figure className="image is-64x64 team__logo">
+              <img src={this.state.team.image} alt={this.state.team.name}/>
+            </figure>
+
+            <div className="team__header-content">
+
+              {/* Team Name */}
+              <span className="team__name">
+                <h2 className="title is-2">{this.state.team.name}</h2>
+                <a className="icon">
+                  <i className="fas fa-cog"></i>
+                </a>
               </span>
+              <p className="team__wave">wave {this.state.team.wave_id}</p>
+
+              {/* Team Members */}
+              <div className="team__members">
+                {this.state.team.members && this.state.team.members.map(member =>
+                  <figure key={member.user.id} className="image is-48x48">
+                    <img className="is-rounded" src={member.user.image} alt={member.user.first_name + '' + member.user.last_name} />
+                  </figure>
+                )}
+
+              </div>
+
             </div>
-            <p>wave {this.state.team.wave_id}</p>
-          </div>
+          </header>
 
-          <div className="levels">
-            {this.state.team.members && this.state.team.members.map(member =>
-              <figure key={member.user.id} className="image is-48x48">
-                <img className="is-rounded" src={member.user.image} alt={member.user.first_name + '' + member.user.last_name} />
-              </figure>
-            )}
-          </div>
+          {/* Team Tab Menu */}
+          <TeamTabMenu baseUrl={this.state.url} setCurrentTab={this.setCurrentTab}
+            currentTab={this.state.currentTab }/>
 
-          <TeamTabMenu baseUrl={this.state.url}/>
-          <Switch>
-            <SecureRoute path={`${this.state.url}/meetings`} component={() => <MeetingIndex teamId={this.state.teamId}/>} />
-            <SecureRoute path={`${this.state.url}/budget`} component={() => <BudgetIndex teamId={this.state.teamId}/>} />
-            <SecureRoute path={`${this.state.url}/tasks`} component={TasksIndex} teamId={this.state.teamId} />
-            <SecureRoute path={`${this.state.url}/kit`} component={KitIndex} teamId={this.state.teamId} />
-          </Switch>
+          {/* current Tab */}
+          {this.state.currentTab === 'meetings' && <MeetingIndex teamId={this.state.teamId}/>}
+          {this.state.currentTab === 'budget' && <BudgetIndex teamId={this.state.teamId}/>}
+          {this.state.currentTab === 'tasks' && <TasksIndex teamId={this.state.teamId}/>}
+          {this.state.currentTab === 'kit' && <KitIndex teamId={this.state.teamId}/>}
+
         </div>
       </main>
     );

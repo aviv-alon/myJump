@@ -29,7 +29,7 @@ class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand logo">
             <Link className="navbar-item" to="/">
-            myJump
+              <img src="/assets/images/myjump-logo.png"></img>
             </Link>
 
             <a role="button" className={`navbar-burger ${this.state.navbarActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={this.toggleNavbar}>

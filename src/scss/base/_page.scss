@@ -15,6 +15,7 @@
 	// Based on css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
 		html {
 			box-sizing: border-box;
+      background-color:		_palette(bg);
 		}
 
 		*, *:before, *:after {
@@ -22,7 +23,7 @@
 		}
 
 	body {
-		background-color:		_palette(bg);
+
 
 		background-size:		auto,
 								cover;

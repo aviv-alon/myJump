@@ -1,37 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+const TeamTabMenu = ({ currentTab, setCurrentTab}) => {
 
 
-const TeamTabMenu = ({baseUrl}) => {
   return (
-    <div className="tabs is-centered">
+    <nav className="tabs is-centered team__tabMenu">
       <ul>
-        <li>
-          <Link to={`${baseUrl}/meetings`}>
+
+        <li className={currentTab==='meetings'&&'is-active'}>
+          <a onClick={() => setCurrentTab('meetings')}>
             <span className="icon is-small"><i className="far fa-calendar-alt" aria-hidden="true"></i></span>
             <span>Meetings</span>
-          </Link>
+          </a>
         </li>
-        <li className="is-active">
-          <Link to={`${baseUrl}/tasks`}>
+
+
+        <li className={currentTab==='tasks'&&'is-active'}>
+          <a onClick={() => setCurrentTab('tasks')}>
             <span className="icon is-small"><i className="fas fa-tasks" aria-hidden="true"></i></span>
             <span>Tasks</span>
-          </Link>
+          </a>
         </li>
-        <li>
-          <Link to={`${baseUrl}/budget`}>
+
+
+        <li className={currentTab==='budget'&&'is-active'}>
+          <a onClick={() => setCurrentTab('budget')}>
             <span className="icon is-small"><i className="fas fa-file-invoice-dollar" aria-hidden="true"></i></span>
             <span>Budget</span>
-          </Link>
+          </a>
         </li>
-        <li>
-          <Link to={`${baseUrl}/kit`}>
+
+
+        <li className={currentTab==='kit'&&'is-active'}>
+          <a onClick={() => setCurrentTab('kit')}>
             <span className="icon is-small"><i className="fas fa-folder-open" aria-hidden="true"></i></span>
             <span>Accelerator Kit</span>
-          </Link>
+          </a>
         </li>
+
+
       </ul>
-    </div>
+    </nav>
   );
 };
 

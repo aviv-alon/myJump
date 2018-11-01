@@ -31,6 +31,7 @@ class App extends React.Component {
             <SecureRoute path="/profile/:id/edit" component={UserEdit} />
             <SecureRoute path="/profile" component={UserShow} />
 
+            {/* <SecureRoute path="/team/:id/:tab" component={TeamIndex} /> */}
             <SecureRoute path="/team/:id" component={TeamIndex} />
 
 
