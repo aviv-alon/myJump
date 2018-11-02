@@ -32,8 +32,11 @@ class Login extends React.Component {
     return (
       <main className="section">
         <div className="container">
+          <figure className="image">
+            <img src="/assets/images/myjump-logo.png"></img>
+          </figure>
           <form onSubmit={this.handleSubmit}>
-            <h2 className="title">Login</h2>
+
             <div className="field">
               <label className="label">Email</label>
               <div className="control">
@@ -50,7 +53,7 @@ class Login extends React.Component {
 
             <div className="level control">
               <div className="level-item">
-                <button className="button is-primary is-rounded is-medium">Submit</button>
+                <button className="button is-rounded is-medium">Submit</button>
               </div>
             </div>
 

@@ -40,10 +40,6 @@ class BudgetIndex extends React.Component {
     this.getBudgetLines();
   }
 
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-
   handleChange(e) {
     const budgetLine = { ...this.state.budgetLine, [e.target.name]: e.target.value };
     const errors = { ...this.state.errors, [e.target.name]: null};
@@ -116,21 +112,39 @@ class BudgetIndex extends React.Component {
     if(!this.state.budgetLines) return null;
     return (
 
-      <div className="container">
+      <div className="container budget">
 
-        <div className="card">
+        <div className="card budget__info">
           <div className="card-content">
-            <p> Current Balance: {this.state.budgetLines && this.state.budgetLines.reduce((accumulator, bl) => accumulator + bl.amount,0)}  ₪ </p>
+            <p className="title is-4">Current Balance</p>
+
+            <div className="level">
+
+              <div className="budget__info-cb">
+                <span className="subtitle is-5">
+                  {this.state.budgetLines && this.state.budgetLines.reduce((accumulator, bl) => {
+                    return (bl.amount > 0)?  accumulator + bl.amount:accumulator;
+                  }
+                  ,0)}  ₪ \
+                </span>
+                <span className="subtitle is-1">
+                  {this.state.budgetLines && this.state.budgetLines.reduce((accumulator, bl) => accumulator + bl.amount,0)}  ₪
+                </span>
+              </div>
+
+              <button className="button is-rounded" onClick={() =>this.toggleModal(this.actiosModel.new)}>
+                 + Add Expenditure
+              </button>
+
+            </div>
           </div>
-          <button className="button" onClick={() =>this.toggleModal(this.actiosModel.new)}>
-             + Add Budget Line
-          </button>
+
         </div>
 
         <br/> {/* // TODO: delete the br */}
 
-        <div className="card">
-          <table className="table">
+        <div className="card budget__tabel">
+          <table className="table is-striped is-hoverable is-fullwidth">
             <thead>
               <tr>
                 <th>Date</th>
@@ -141,8 +155,6 @@ class BudgetIndex extends React.Component {
 
               </tr>
             </thead>
-
-
 
             <tbody>
               {this.state.budgetLines && this.state.budgetLines.map(bl =>
@@ -174,10 +186,9 @@ class BudgetIndex extends React.Component {
           </table>
         </div>
 
-
         <BudgetLineForm
           closeModal={this.toggleModal}
-          tilteModel={this.actiosModel.new===this.state.modelAction?'New Budget Line':'Edit Budget Line'}
+          tilteModel={this.actiosModel.new===this.state.modelAction?'New Expenditure':'Edit Expenditure'}
           modalState={this.state.modalState}
           teamId={this.state.teamId}
           handleChange={this.handleChange}

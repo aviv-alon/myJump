@@ -119,8 +119,8 @@ const BudgetLineForm = ({ closeModal, modalState, tilteModel, handleSubmit, hand
             </div>
           </section>
           <footer className="modal-card-foot">
-            <button className="button is-success">Save changes</button>
-            <a className="button" onClick={closeModal}>Cancel</a>
+            <button className="button is-rounded">Save changes</button>
+            <a className="button is-rounded" onClick={closeModal}>Cancel</a>
           </footer>
         </form>
       </div>

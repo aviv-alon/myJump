@@ -1,9 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 // import axios from 'axios';
 
 
-class Main extends React.Component {
+class About extends React.Component {
   constructor() {
     super();
     this.state = {artists: [], journeys: []};
@@ -98,4 +98,4 @@ class Main extends React.Component {
   }
 }
 
-export default withRouter(Main);
+export default About;

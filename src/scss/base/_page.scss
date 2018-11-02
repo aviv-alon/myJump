@@ -33,7 +33,13 @@
 
 		background-position:	center,
 								center;
-
-
-
 	}
+
+  button.button{
+    background-color: _palette(jump-blue);
+    color: white;
+  }
+  button.button:hover{
+    background-color: _palette(jump-blue-light);
+    color: white;
+  }

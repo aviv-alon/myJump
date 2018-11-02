@@ -24,12 +24,15 @@ class Navbar extends React.Component {
     this.setState({ navbarActive: !this.state.navbarActive });
   }
   render() {
+    console.log(this.props.location.pathname);
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="container">
+
           <div className="navbar-brand logo">
+
             <Link className="navbar-item" to="/">
-              <img src="/assets/images/myjump-logo.png"></img>
+              {this.props.location.pathname!=='/login'&&<img src="/assets/images/myjump-logo.png"></img>}
             </Link>
 
             <a role="button" className={`navbar-burger ${this.state.navbarActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={this.toggleNavbar}>
@@ -46,7 +49,7 @@ class Navbar extends React.Component {
               <Link className="navbar-item" to="/about">About</Link>
 
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
-              {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
+              {/* {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>} */}
               {Auth.isAuthenticated() && <Link className="navbar-item" to="/profile">Profile</Link>}
               {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
             </div>

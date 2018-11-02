@@ -10,9 +10,11 @@ export default class Column extends React.Component {
       <div>
         <h3>{this.props.column.title}</h3>
         {/* <Droppable droppableId={this.props.column.id}> */}
-        {
-          this.props.tasks.map(task => <TaskCard key={task.id} task={task}/>)
-        }
+        <div>
+          {
+            this.props.tasks.map(task => <TaskCard key={task.id} task={task}/>)
+          }
+        </div>
         {/* </Droppable> */}
       </div>
     );
