@@ -30,25 +30,33 @@ class Login extends React.Component {
 
   render() {
     return (
-      <main className="section">
+      <main className="section login">
         <div className="container">
-          <figure className="image">
+
+          <figure className="image login__logo">
             <img src="/assets/images/myjump-logo.png"></img>
           </figure>
           <form onSubmit={this.handleSubmit}>
 
+
             <div className="field">
-              <label className="label">Email</label>
-              <div className="control">
-                <input className={`input ${this.state.error ? 'is-danger' : ''} `} name="email" placeholder="Email" onChange={this.handleChange} />
-              </div>
+              <p className="control has-icons-left">
+                <input className={`input ${this.state.error ? 'is-danger' : ''} `} name="email" placeholder="Email" onChange={this.handleChange} autoComplete="username"/>
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </p>
             </div>
+
             <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input className={`input ${this.state.error ? 'is-danger' : ''} `} name="password" type="password" placeholder="Password" onChange={this.handleChange} />
-              </div>
+              <p className="control has-icons-left">
+                <input className={`input ${this.state.error ? 'is-danger' : ''} `} name="password" type="password" placeholder="Password" onChange={this.handleChange} autoComplete="current-password"/>
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock"></i>
+                </span>
+              </p>
             </div>
+
             {this.state.error && <small className="help is-danger">{this.state.error}</small>}
 
             <div className="level control">

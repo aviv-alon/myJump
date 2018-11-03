@@ -8,7 +8,7 @@ export default class Column extends React.Component {
   render() {
     return(
       <div>
-        <h3>{this.props.column.title}</h3>
+        <h3 className="title is-4">{this.props.column.title}</h3>
         {/* <Droppable droppableId={this.props.column.id}> */}
         <div>
           {

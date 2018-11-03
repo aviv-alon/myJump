@@ -18,33 +18,83 @@ class KitIndex extends React.Component {
 
   render() {
     return (
-      <main className="section">
+      <main className="section kit">
 
         {/* card 1 */}
-        <div>
-          <div>
-            <p className="title">
-              Workshop 1 - Introduction
-            </p>
-            <p className="subtitle">
-              The meeting will be attended by the professional facilitator. During the meeting we will talk about the world of concepts in the Stratum world.
-            </p>
-          </div>
+        <div className="card">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-64x64">
+                  <img src="/assets/images/businessModelCanvas.png" alt="Placeholder image" />
+                </figure>
+              </div>
+              <div className="media-content">
 
-        </div>
-        <hr />
-        <br />
-        {/* card 2 */}
-        <div>
-          <div>
-            <p className="title">
-              Workshop 2 - Buisness Model
-            </p>
-            <p className="subtitle">
-              The meeting will be attended by the professional facilitator. During the meeting we will talk about the world of concepts in the Stratum world.
-            </p>
+                <p className="title is-4">Business Model Canvas</p>
+
+                <p className="subtitle is-6">Please uplod the last version of Business Model Canvas</p>
+
+                <div className="file has-name is-left">
+                  <label className="file-label">
+                    <input className="file-input" type="file" name="resume" />
+                    <span className="file-cta">
+                      <span className="file-icon">
+                        <i className="fas fa-upload"></i>
+                      </span>
+                      <span className="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+                    <span className="file-name">
+                      Screen Shot 2017-07-29 at 15.54.25.png
+                    </span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* card 2 */}
+        <div className="card">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-64x64">
+                  <img src="/assets/images/inequality.png" alt="Placeholder image" />
+                </figure>
+              </div>
+              <div className="media-content">
+
+                <p className="title is-4">Business Plan</p>
+
+                <p className="subtitle is-6">Please uplod the last version of Business Model Canvas</p>
+
+                <div className="file has-name is-left">
+                  <label className="file-label">
+                    <input className="file-input" type="file" name="resume" />
+                    <span className="file-cta">
+                      <span className="file-icon">
+                        <i className="fas fa-upload"></i>
+                      </span>
+                      <span className="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+                    <span className="file-name">
+                      Screen Shot 2017-07-29 at 15.54.25.png
+                    </span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
 
       </main>

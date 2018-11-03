@@ -18,7 +18,15 @@ class MeetingIndex extends React.Component {
 
   render() {
     return (
-      <main className="section">
+      <main className="section meeting">
+
+        <div className="meeting__bar">
+          <button className="button is-rounded" onClick={() =>this.toggleModal(this.actiosModel.new)}>
+             + Add Meeting
+          </button>
+
+          <a> To book meeting status</a>
+        </div>
 
         {/* card 1 */}
         <div className="card">
@@ -50,6 +58,7 @@ class MeetingIndex extends React.Component {
           </footer>
         </div>
         <br />
+
         {/* card 2 */}
         <div className="card">
           <div className="card-content">
@@ -79,6 +88,38 @@ class MeetingIndex extends React.Component {
             </p>
           </footer>
         </div>
+        <br />
+
+        {/* card 3 */}
+        <div className="card">
+          <div className="card-content">
+            <p className="title is-4">
+              Workshop 3 - Marketing
+            </p>
+            <p >
+              The meeting will be attended by the professional facilitator. During the meeting we will talk about the world of concepts in the Stratum world.
+            </p>
+          </div>
+          <footer className="card-footer">
+            <p className="card-footer-item">
+              <address>
+                <span className="icon">
+                  <i className="fas fa-map-marker-alt"></i>
+                </span>
+                Gav Yam, Bear Sheva
+              </address>
+            </p>
+            <p className="card-footer-item">
+              <time dateTime="2008-02-21 20:00">
+                <span className="icon">
+                  <i className="fas fa-clock"></i>
+                </span>
+                21/10/2019, 17:30
+              </time>
+            </p>
+          </footer>
+        </div>
+        <br />
 
 
       </main>
