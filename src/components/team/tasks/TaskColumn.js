@@ -1,8 +1,8 @@
 import React from 'react';
-import { Droppable } from 'react-beautiful-dnd';
+// import { Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 
-export default class Column extends React.Component {
+export default class TaskColumn extends React.Component {
 
 
   render() {

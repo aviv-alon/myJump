@@ -2,7 +2,7 @@ import React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import initialData from './initial-data';
-import Column from './column';
+import TaskColumn from './TaskColumn';
 
 
 
@@ -17,10 +17,10 @@ class TaskIndex extends React.Component {
     console.log(this.state);
   }
 
-  onDragEnd = result => {
-    // TODO: reorder our column
-  };
-  
+  // onDragEnd = result => {
+  //   // TODO: reorder our column
+  // };
+
 
   render() {
     return (
@@ -32,7 +32,7 @@ class TaskIndex extends React.Component {
               const column = this.state.columns[columnId];
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
 
-              return <Column key={column.id} column={column} tasks={tasks} />;
+              return <TaskColumn key={column.id} column={column} tasks={tasks} />;
             })}
           </div>
         </DragDropContext>
