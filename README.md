@@ -1,4 +1,4 @@
-![myjump-logo](https://user-images.githubusercontent.com/33804499/47972325-e5cc0400-e092-11e8-9e42-19ad4012cefc.jpeg)
+![myjump-logo](https://user-images.githubusercontent.com/33804499/47972496-bfa76380-e094-11e8-8512-6429e50f0de6.jpg)
 
  A open central platform for managing Jump - Startup Accelerator.
 
